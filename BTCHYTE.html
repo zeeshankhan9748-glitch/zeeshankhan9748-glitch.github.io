@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>BTC Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#0d1117;
+    color:white;
+    font-family:Segoe UI,Arial,sans-serif;
+    overflow:hidden;
+}
+
+.container{
+    width:100vw;
+    height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    radial-gradient(circle at top,#1f2937,#0d1117 60%);
+}
+
+.logo{
+    font-size:90px;
+}
+
+.title{
+    margin-top:10px;
+    font-size:28px;
+    color:#888;
+    letter-spacing:3px;
+}
+
+.price{
+    margin-top:25px;
+    font-size:90px;
+    font-weight:700;
+}
+
+.change{
+    margin-top:20px;
+    font-size:34px;
+    font-weight:bold;
+}
+
+.stats{
+    margin-top:40px;
+    display:flex;
+    gap:70px;
+}
+
+.card{
+    text-align:center;
+}
+
+.label{
+    color:#888;
+    font-size:18px;
+}
+
+.value{
+    margin-top:10px;
+    font-size:30px;
+    font-weight:bold;
+}
+
+.time{
+    position:absolute;
+    bottom:20px;
+    font-size:18px;
+    color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">₿</div>
+
+<div class="title">
+BINANCE BTC/USDT
+</div>
+
+<div class="price" id="price">
+Loading...
+</div>
+
+<div class="change" id="change">
+...
+</div>
+
+<div class="stats">
+
+<div class="card">
+<div class="label">24H HIGH</div>
+<div class="value" id="high">-</div>
+</div>
+
+<div class="card">
+<div class="label">24H LOW</div>
+<div class="value" id="low">-</div>
+</div>
+
+</div>
+
+<div class="time" id="time"></div>
+
+</div>
+
+<script>
+
+async function update(){
+
+try{
+
+const res=await fetch("https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT");
+
+const d=await res.json();
+
+document.getElementById("price").innerHTML=
+"$"+Number(d.lastPrice).toLocaleString(undefined,{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+});
+
+const p=parseFloat(d.priceChangePercent);
+
+const color=p>=0?"#00ff88":"#ff4444";
+
+document.getElementById("change").style.color=color;
+
+document.getElementById("change").innerHTML=
+(p>=0?"+":"")+p.toFixed(2)+"%";
+
+document.getElementById("high").innerHTML=
+"$"+Number(d.highPrice).toLocaleString();
+
+document.getElementById("low").innerHTML=
+"$"+Number(d.lowPrice).toLocaleString();
+
+document.getElementById("time").innerHTML=
+new Date().toLocaleTimeString();
+
+}
+catch(e){
+document.getElementById("price").innerHTML="Offline";
+}
+
+}
+
+update();
+
+setInterval(update,1000);
+
+</script>
+
+</body>
+</html>
