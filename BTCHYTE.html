@@ -3,475 +3,529 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HYTE Y70 | BTC TRILLION TERMINAL Ω</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>BTC TRILLION TERMINAL • IFRAME OPTIMIZED</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg0:#03040a;
-      --bg1:#070b15;
-      --glass:rgba(255,255,255,.06);
-      --line:rgba(173,226,255,.24);
-
-      --text:#ebf9ff;
-      --muted:#90a9ba;
-
-      --cyan:#00f6ff;
-      --blue:#2b7bff;
-      --violet:#8b5cf6;
+      --bg:#07111e;
+      --bg2:#0a1526;
+      --panel:rgba(13,25,44,.74);
+      --line:#1ed3e6;
+      --lineSoft:rgba(30,211,230,.35);
+      --txt:#e9fbff;
+      --muted:#8ca9bc;
+      --cyan:#28e8ff;
+      --blue:#2e8bff;
       --gold:#ffb84d;
       --green:#00ff9d;
-      --red:#ff4b63;
-
-      --shadow-cyan:0 0 24px rgba(0,246,255,.34),0 0 70px rgba(0,246,255,.15);
-      --shadow-gold:0 0 18px rgba(255,184,77,.35),0 0 52px rgba(255,184,77,.18);
-      --shadow-deep:0 16px 40px rgba(0,0,0,.45);
-    }
-
-    /* Theme Variants */
-    body.theme-gold{
-      --cyan:#ffcf66;
-      --blue:#ff9f43;
-      --violet:#ffd56f;
-      --line:rgba(255,214,130,.30);
-      --shadow-cyan:0 0 24px rgba(255,196,90,.35),0 0 70px rgba(255,173,66,.18);
-      --text:#fff7e9;
-      --muted:#d7b98f;
-    }
-
-    body.theme-red{
-      --cyan:#ff4b63;
-      --blue:#ff7a7a;
-      --violet:#ff5f8f;
-      --line:rgba(255,125,145,.30);
-      --shadow-cyan:0 0 24px rgba(255,75,99,.35),0 0 70px rgba(255,90,120,.18);
-      --text:#ffeef2;
-      --muted:#d6a2ad;
+      --red:#ff4f67;
     }
 
     *{margin:0;padding:0;box-sizing:border-box}
+
     html,body{
-      width:100%;height:100%;overflow:hidden;
-      font-family:'Rajdhani',system-ui,sans-serif;
-      color:var(--text);
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      font-family:'Rajdhani',sans-serif;
+      color:var(--txt);
       background:
-        radial-gradient(1300px 700px at -8% 110%, color-mix(in srgb, var(--cyan) 28%, transparent), transparent 58%),
-        radial-gradient(1200px 700px at 105% -10%, color-mix(in srgb, var(--blue) 30%, transparent), transparent 62%),
-        radial-gradient(1000px 560px at 60% 120%, color-mix(in srgb, var(--violet) 24%, transparent), transparent 56%),
-        linear-gradient(180deg,var(--bg1),var(--bg0));
-      cursor:default;
+        radial-gradient(1000px 600px at -10% 100%, rgba(40,232,255,.15), transparent 58%),
+        radial-gradient(900px 600px at 110% -10%, rgba(46,139,255,.18), transparent 58%),
+        linear-gradient(180deg,var(--bg2),var(--bg));
     }
 
     body::before{
       content:"";
-      position:fixed;inset:0;z-index:0;pointer-events:none;
+      position:fixed;inset:0;pointer-events:none;
       background:
-        linear-gradient(color-mix(in srgb, var(--cyan) 14%, transparent) 1px, transparent 1px),
-        linear-gradient(90deg, color-mix(in srgb, var(--cyan) 14%, transparent) 1px, transparent 1px);
-      background-size:52px 52px;
-      mask-image:radial-gradient(circle at center,#000 36%,transparent 96%);
-      animation:gridMove 16s linear infinite;
-    }
-    body::after{
-      content:"";
-      position:fixed;inset:0;z-index:0;pointer-events:none;
-      background:repeating-linear-gradient(to bottom,rgba(255,255,255,.025) 0 1px,transparent 2px 4px);
-      mix-blend-mode:soft-light;
-    }
-    @keyframes gridMove{from{transform:translateY(0)}to{transform:translateY(52px)}}
-
-    .particles{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-    .particle{
-      position:absolute;width:3px;height:3px;border-radius:99px;background:var(--cyan);
-      box-shadow:0 0 12px var(--cyan),0 0 26px var(--cyan);opacity:.55;
-      animation:floatUp linear infinite;
-    }
-    @keyframes floatUp{
-      from{transform:translateY(110vh) translateX(0);opacity:0}
-      10%{opacity:.65}
-      90%{opacity:.65}
-      to{transform:translateY(-20vh) translateX(35px);opacity:0}
+        linear-gradient(rgba(40,232,255,.06) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(40,232,255,.06) 1px,transparent 1px);
+      background-size:34px 34px;
+      opacity:.28;
     }
 
     .app{
-      position:relative;z-index:2;height:100vh;width:100vw;padding:14px;
-      display:grid;grid-template-rows:auto auto 1fr auto;gap:10px;
+      width:100%;
+      height:100%;
+      padding:10px;
+      display:grid;
+      grid-template-rows:auto auto 1fr auto;
+      gap:8px;
     }
 
-    .topbar,.subbar,.panel,.card,.footer,.tape,.orderbook,.alert-panel,.gauge{
-      position:relative;overflow:hidden;border-radius:16px;border:1px solid var(--line);
-      background:linear-gradient(140deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
-      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-      box-shadow:var(--shadow-deep),var(--shadow-cyan);
+    .glass{
+      position:relative;
+      border:1px solid var(--lineSoft);
+      border-radius:12px;
+      background:linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.03) inset,
+        0 0 20px rgba(30,211,230,.16);
+      overflow:hidden;
     }
 
-    .topbar::before,.subbar::before,.panel::before,.card::before,.footer::before,.tape::before,.orderbook::before,.alert-panel::before,.gauge::before{
-      content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;opacity:.62;
-      background:linear-gradient(120deg,transparent,color-mix(in srgb, var(--cyan) 65%, transparent),color-mix(in srgb, var(--gold) 45%, transparent),color-mix(in srgb, var(--violet) 45%, transparent),transparent);
+    .glass::after{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius:inherit;
+      padding:1px;
+      background:linear-gradient(115deg, transparent, rgba(40,232,255,.55), transparent);
       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor;mask-composite:exclude;
-      animation:borderFlow 6s linear infinite;
-    }
-    @keyframes borderFlow{
-      0%{filter:hue-rotate(0deg);transform:translateX(-7%)}
-      50%{filter:hue-rotate(40deg);transform:translateX(7%)}
-      100%{filter:hue-rotate(0deg);transform:translateX(-7%)}
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      pointer-events:none;
+      opacity:.55;
     }
 
-    .holo{
-      position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
-      background:linear-gradient(115deg,transparent 37%,rgba(255,255,255,.12) 49%,transparent 63%);
-      transform:translateX(-130%);animation:holoSweep 4.6s ease-in-out infinite;
-    }
-    @keyframes holoSweep{
-      0%,12%{transform:translateX(-130%);opacity:0}
-      22%,60%{opacity:.72}
-      100%{transform:translateX(130%);opacity:0}
+    .top{
+      padding:8px 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
     }
 
-    .topbar{
-      padding:10px 14px;display:flex;align-items:center;justify-content:space-between;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      min-width:0;
     }
-    .brand{display:flex;align-items:center;gap:12px}
+
     .btc{
-      font-family:'Orbitron',sans-serif;font-size:42px;line-height:1;color:var(--gold);
-      text-shadow:var(--shadow-gold);animation:logoPulse 2.2s ease-in-out infinite alternate;
-    }
-    @keyframes logoPulse{from{transform:scale(1)}to{transform:scale(1.08)}}
-    .title{font-family:'Orbitron',sans-serif;font-weight:900;font-size:17px}
-    .subtitle{margin-top:1px;font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
-
-    .status{display:flex;align-items:center;gap:8px;font-weight:700;color:#bdfff2}
-    .dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green),0 0 20px var(--green);animation:blink 1.2s infinite}
-    @keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
-
-    .subbar{
-      padding:8px 10px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;
+      font-family:'Orbitron',sans-serif;
+      font-size:22px;
+      color:var(--gold);
+      text-shadow:0 0 14px rgba(255,184,77,.45);
+      line-height:1;
     }
 
-    .timeframes,.themes,.actions{
-      display:flex;gap:6px;flex-wrap:wrap;align-items:center;
+    .titles{
+      min-width:0;
+    }
+
+    .title{
+      font-family:'Orbitron',sans-serif;
+      font-weight:800;
+      font-size:11px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .sub{
+      font-size:9px;
+      color:var(--muted);
+      letter-spacing:1.2px;
+      text-transform:uppercase;
+    }
+
+    .live{
+      font-size:10px;
+      font-weight:700;
+      color:#bfffee;
+      display:flex;
+      align-items:center;
+      gap:5px;
+      white-space:nowrap;
+    }
+
+    .dot{
+      width:7px;height:7px;border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 10px var(--green);
+      animation:blink 1.2s infinite;
+    }
+
+    @keyframes blink{50%{opacity:.35}}
+
+    .bar{
+      padding:6px 8px;
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .chips{
+      display:flex;
+      gap:5px;
+      flex-wrap:wrap;
     }
 
     .chip{
-      border:1px solid var(--line);
+      border:1px solid var(--lineSoft);
       background:rgba(255,255,255,.05);
-      color:var(--text);
-      padding:7px 10px;border-radius:10px;
-      font-size:11px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;
-      cursor:pointer;transition:.22s;
+      color:var(--txt);
+      border-radius:8px;
+      font-size:9px;
+      font-weight:700;
+      letter-spacing:.8px;
+      padding:5px 7px;
+      text-transform:uppercase;
+      cursor:pointer;
     }
-    .chip:hover{transform:translateY(-1px);box-shadow:0 0 18px color-mix(in srgb,var(--cyan) 45%,transparent)}
-    .chip.active{background:color-mix(in srgb,var(--cyan) 22%,transparent);box-shadow:0 0 20px color-mix(in srgb,var(--cyan) 40%,transparent)}
-    .chip.warn{border-color:rgba(255,80,110,.45)}
+
+    .chip.active{
+      background:rgba(40,232,255,.18);
+      box-shadow:0 0 10px rgba(40,232,255,.25);
+    }
 
     .main{
       min-height:0;
-      display:grid;grid-template-columns:1.25fr .75fr;gap:10px;
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+      gap:8px;
     }
 
-    .left-col{
-      min-height:0;
-      display:grid;grid-template-rows:auto 1fr auto;gap:10px;
+    .hero{
+      padding:8px;
     }
 
-    .panel{padding:12px;min-height:0}
-    .price-wrap{display:flex;flex-direction:column;gap:4px}
-    .pair{font-size:12px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+    .pair{
+      font-size:9px;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
     .price{
-      font-family:'Orbitron',sans-serif;font-size:clamp(34px,6.4vw,92px);font-weight:900;line-height:1.04;
-      text-shadow:0 0 26px color-mix(in srgb,var(--cyan) 58%,transparent);
-      word-break:break-word;
+      font-family:'Orbitron',sans-serif;
+      font-size:48px;
+      font-weight:900;
+      line-height:1.02;
+      margin-top:3px;
+      text-shadow:0 0 18px rgba(40,232,255,.45);
+      letter-spacing:.5px;
     }
-    .price.flash{animation:flash .48s ease}
-    @keyframes flash{50%{color:var(--cyan);text-shadow:0 0 36px var(--cyan);transform:scale(1.01)}}
-    .change{font-family:'Orbitron',sans-serif;font-size:clamp(20px,2.7vw,34px);font-weight:800}
-    .up{color:var(--green);text-shadow:0 0 18px rgba(0,255,157,.45)}
-    .down{color:var(--red);text-shadow:0 0 18px rgba(255,75,99,.45)}
+
+    .change{
+      font-family:'Orbitron',sans-serif;
+      font-size:20px;
+      font-weight:800;
+      margin-top:2px;
+    }
+
+    .up{color:var(--green);text-shadow:0 0 14px rgba(0,255,157,.45)}
+    .down{color:var(--red);text-shadow:0 0 14px rgba(255,79,103,.45)}
 
     canvas{
-      width:100%;height:240px;margin-top:8px;display:block;
-      border-radius:14px;border:1px solid color-mix(in srgb,var(--cyan) 35%,transparent);
-      background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));
-      box-shadow:inset 0 0 26px color-mix(in srgb,var(--cyan) 20%,transparent);
+      margin-top:8px;
+      width:100%;
+      height:160px;
+      border-radius:10px;
+      border:1px solid var(--lineSoft);
+      background:rgba(255,255,255,.03);
+      display:block;
     }
 
     .tape{
-      padding:8px 10px;
-      display:flex;align-items:center;gap:10px;
-      font-size:12px;font-weight:700;
-      white-space:nowrap;overflow:hidden;
+      margin-top:6px;
+      border-top:1px solid rgba(255,255,255,.06);
+      padding-top:5px;
+      font-size:9px;
+      display:flex;
+      gap:8px;
+      white-space:nowrap;
+      overflow:hidden;
+      color:var(--muted);
     }
-    .tape-track{
-      display:inline-flex;gap:16px;min-width:max-content;
-      animation:scrollTape 22s linear infinite;
-    }
-    @keyframes scrollTape{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-    .trade.buy{color:var(--green)}
-    .trade.sell{color:var(--red)}
 
-    .right-col{
-      min-height:0;display:grid;grid-template-rows:auto auto 1fr;gap:10px;
+    .track{
+      display:inline-flex;
+      gap:12px;
+      min-width:max-content;
+      animation:scroll 20s linear infinite;
+    }
+
+    @keyframes scroll{to{transform:translateX(-50%)}}
+    .buy{color:var(--green)}
+    .sell{color:var(--red)}
+
+    .metricsWrap{
+      min-height:0;
+      display:grid;
+      grid-template-rows:auto auto auto;
+      gap:8px;
     }
 
     .metrics{
-      min-height:0;
-      display:grid;grid-template-columns:1fr 1fr;gap:8px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:6px;
     }
 
     .card{
-      padding:10px 10px;display:flex;flex-direction:column;justify-content:center;
-      transform-style:preserve-3d;transition:transform .22s ease,box-shadow .22s ease;
-    }
-    .card:hover{
-      transform:perspective(700px) rotateX(2.4deg) rotateY(-2.4deg) translateY(-2px);
-      box-shadow:0 0 34px color-mix(in srgb,var(--cyan) 44%,transparent),var(--shadow-deep);
+      padding:7px 8px;
     }
 
     .label{
-      font-size:15px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);font-weight:700;
+      font-size:10px;
+      letter-spacing:1.2px;
+      color:var(--muted);
+      text-transform:uppercase;
+      font-weight:700;
     }
+
+    /* THIS is the key fix: large readable values */
     .value{
-      margin-top:4px;
+      margin-top:2px;
       font-family:'Orbitron',sans-serif;
-      font-size:clamp(20px,2.3vw,31px);
-      font-weight:800;color:#ecfbff;text-shadow:0 0 12px color-mix(in srgb,var(--cyan) 45%,transparent);
-      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+      font-size:18px;
+      line-height:1.08;
+      font-weight:900;
+      color:#f4feff;
+      text-shadow:0 0 12px rgba(40,232,255,.5);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
-    .order-gauge-row{
-      display:grid;grid-template-columns:1fr 1fr;gap:8px;
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:6px;
     }
 
-    .orderbook{padding:10px}
-    .orderbook h4,.gauge h4,.alert-panel h4{
-      font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px
+    .order{
+      padding:7px;
     }
 
-    .book-line{
-      position:relative;height:22px;margin-bottom:5px;border-radius:8px;
-      background:rgba(255,255,255,.04);overflow:hidden;font-size:11px;
-      display:flex;align-items:center;justify-content:space-between;padding:0 8px;
-    }
-    .fill-bid,.fill-ask{
-      position:absolute;left:0;top:0;bottom:0;opacity:.30;pointer-events:none;
-    }
-    .fill-bid{background:linear-gradient(90deg,rgba(0,255,157,.65),rgba(0,255,157,.06))}
-    .fill-ask{background:linear-gradient(90deg,rgba(255,75,99,.65),rgba(255,75,99,.06))}
-
-    .gauge{padding:10px;display:grid;place-items:center}
-    .gauge-wrap{position:relative;width:150px;height:150px}
-    .gauge svg{width:100%;height:100%;transform:rotate(-90deg)}
-    .gauge-text{
-      position:absolute;inset:0;display:grid;place-items:center;
-      font-family:'Orbitron',sans-serif;font-size:20px;font-weight:900;
-    }
-    .gauge-sub{
-      margin-top:4px;font-size:11px;color:var(--muted);letter-spacing:1.4px;text-transform:uppercase
+    .order h4,.gauge h4,.alerts h4{
+      font-size:9px;
+      letter-spacing:1.4px;
+      color:var(--muted);
+      text-transform:uppercase;
+      margin-bottom:5px;
     }
 
-    .alert-panel{padding:10px}
-    .alert-grid{display:grid;grid-template-columns:1fr auto;gap:6px}
-    .alert-input{
-      border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--text);
-      border-radius:10px;padding:8px 10px;font-size:12px;outline:none;
-    }
-    .alert-btn{
-      border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--text);
-      border-radius:10px;padding:8px 10px;font-size:12px;font-weight:700;cursor:pointer;
-    }
-    .alert-list{margin-top:8px;max-height:85px;overflow:auto;font-size:12px}
-    .alert-item{display:flex;justify-content:space-between;gap:8px;padding:4px 0;color:var(--muted)}
-    .badge{
-      display:inline-block;font-size:10px;padding:2px 6px;border-radius:999px;border:1px solid var(--line)
+    .line{
+      position:relative;
+      height:16px;
+      border-radius:6px;
+      background:rgba(255,255,255,.04);
+      margin-bottom:4px;
+      overflow:hidden;
+      font-size:8px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 6px;
     }
 
-    .footer{
-      padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;
-      font-size:12px;color:var(--muted);
+    .fillBid,.fillAsk{
+      position:absolute;left:0;top:0;bottom:0;opacity:.35;
     }
-    .footer strong{
-      color:#eaffff;letter-spacing:1.8px;font-family:'Orbitron',sans-serif;font-size:11px
+
+    .fillBid{background:linear-gradient(90deg,rgba(0,255,157,.7),rgba(0,255,157,.08))}
+    .fillAsk{background:linear-gradient(90deg,rgba(255,79,103,.7),rgba(255,79,103,.08))}
+
+    .gauge{
+      padding:7px;
+      display:grid;
+      place-items:center;
     }
+
+    .gwrap{
+      width:92px;height:92px;position:relative;
+    }
+
+    .gwrap svg{width:100%;height:100%;transform:rotate(-90deg)}
+    .gtext{
+      position:absolute;inset:0;
+      display:grid;place-items:center;
+      font-family:'Orbitron',sans-serif;
+      font-size:18px;font-weight:900;
+    }
+
+    .glabel{
+      margin-top:2px;
+      font-size:9px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .alerts{
+      padding:7px;
+    }
+
+    .alertRow{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:5px;
+    }
+
+    .ainput{
+      border:1px solid var(--lineSoft);
+      background:rgba(255,255,255,.05);
+      color:var(--txt);
+      font-size:10px;
+      border-radius:8px;
+      padding:6px 7px;
+      outline:none;
+    }
+
+    .abtn{
+      border:1px solid var(--lineSoft);
+      background:rgba(255,255,255,.08);
+      color:var(--txt);
+      border-radius:8px;
+      padding:6px 8px;
+      font-size:9px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .alist{
+      margin-top:5px;
+      max-height:36px;
+      overflow:auto;
+      font-size:9px;
+      color:var(--muted);
+    }
+
+    .foot{
+      padding:6px 10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:9px;
+      color:var(--muted);
+      letter-spacing:.8px;
+    }
+
+    .foot strong{
+      color:var(--txt);
+      font-family:'Orbitron',sans-serif;
+      font-size:8px;
+    }
+
     .clock{
-      font-family:'Orbitron',sans-serif;color:var(--cyan);
-      text-shadow:0 0 14px color-mix(in srgb,var(--cyan) 50%,transparent);
-      font-size:clamp(13px,1.6vw,19px);
+      font-family:'Orbitron',sans-serif;
+      color:var(--cyan);
+      font-size:10px;
+      text-shadow:0 0 10px rgba(40,232,255,.45);
+      white-space:nowrap;
     }
 
-    .flash-alert{
-      animation:screenFlash .25s ease 0s 2;
-    }
-    @keyframes screenFlash{
-      50%{filter:brightness(1.3) saturate(1.2)}
-    }
-
-    @media (max-width:980px){
-      .app{padding:10px;gap:8px}
-      .main{grid-template-columns:1fr}
-      .right-col{grid-template-rows:auto auto auto}
-      .metrics{grid-template-columns:1fr 1fr}
-      .order-gauge-row{grid-template-columns:1fr}
-      canvas{height:200px}
-      .btc{font-size:34px}
-      .title{font-size:14px}
-      .subtitle{font-size:10px}
-      .label{font-size:13px}
-      .value{font-size:clamp(18px,4.2vw,28px)}
+    /* 4x8 portrait/widget hard lock */
+    @media (max-width:500px){
+      .price{font-size:44px}
+      .change{font-size:18px}
+      .value{font-size:17px}
+      canvas{height:150px}
     }
   </style>
 </head>
-<body class="theme-cyber">
-  <div class="particles" id="particles"></div>
-
-  <div class="app" id="app">
-    <header class="topbar">
-      <div class="holo"></div>
+<body>
+  <div class="app">
+    <header class="top glass">
       <div class="brand">
         <div class="btc">₿</div>
-        <div>
+        <div class="titles">
           <div class="title">HYTE Y70 • BTC TRILLION TERMINAL Ω</div>
-          <div class="subtitle">Binance Feed • Quantum Glass UI</div>
+          <div class="sub">IFRAME OPTIMIZED • BINANCE LIVE</div>
         </div>
       </div>
-      <div class="status"><span class="dot"></span>LIVE</div>
+      <div class="live"><span class="dot"></span>LIVE</div>
     </header>
 
-    <section class="subbar">
-      <div class="holo"></div>
-
-      <div class="timeframes" id="timeframes">
+    <section class="bar glass">
+      <div class="chips" id="timeframes">
         <button class="chip active" data-tf="1m">1M</button>
         <button class="chip" data-tf="5m">5M</button>
         <button class="chip" data-tf="15m">15M</button>
         <button class="chip" data-tf="1h">1H</button>
       </div>
-
-      <div class="themes" id="themes">
-        <button class="chip active" data-theme="cyber">CYBER BLUE</button>
-        <button class="chip" data-theme="gold">GOLD LUXE</button>
-        <button class="chip" data-theme="red">RED NIGHT</button>
-      </div>
-
-      <div class="actions">
-        <button class="chip" id="fullscreenBtn">FULLSCREEN</button>
-        <button class="chip warn" id="soundBtn">SOUND: ON</button>
+      <div class="chips" id="themes">
+        <button class="chip active" data-theme="cyber">CYBER</button>
+        <button class="chip" data-theme="gold">GOLD</button>
+        <button class="chip" data-theme="red">RED</button>
       </div>
     </section>
 
-    <section class="main">
-      <div class="left-col">
-        <article class="panel">
-          <div class="holo"></div>
-          <div class="price-wrap">
-            <div class="pair">BTC / USDT</div>
-            <div class="price" id="price">LOADING...</div>
-            <div class="change" id="change">--</div>
-          </div>
-          <canvas id="chart"></canvas>
-        </article>
+    <main class="main">
+      <section class="hero glass">
+        <div class="pair">BTC / USDT</div>
+        <div class="price" id="price">LOADING...</div>
+        <div class="change" id="change">--</div>
+        <canvas id="chart"></canvas>
 
         <div class="tape">
-          <div class="holo"></div>
-          <strong style="color:var(--muted);font-size:11px;letter-spacing:1.5px;">LIVE TAPE</strong>
-          <div class="tape-track" id="tapeTrack"></div>
-          <div class="tape-track" id="tapeTrackClone"></div>
+          <div class="track" id="trackA"></div>
+          <div class="track" id="trackB"></div>
         </div>
-      </div>
+      </section>
 
-      <div class="right-col">
+      <section class="metricsWrap">
         <div class="metrics">
-          <div class="card"><div class="holo"></div><div class="label">24H HIGH</div><div class="value" id="high">--</div></div>
-          <div class="card"><div class="holo"></div><div class="label">24H LOW</div><div class="value" id="low">--</div></div>
-          <div class="card"><div class="holo"></div><div class="label">24H VOLUME</div><div class="value" id="volume">--</div></div>
-          <div class="card"><div class="holo"></div><div class="label">QUOTE VOLUME</div><div class="value" id="quoteVolume">--</div></div>
-          <div class="card"><div class="holo"></div><div class="label">24H RANGE</div><div class="value" id="range">--</div></div>
-          <div class="card"><div class="holo"></div><div class="label">AI SENTIMENT</div><div class="value" id="sentiment">NEUTRAL</div></div>
+          <div class="card glass"><div class="label">24H HIGH</div><div class="value" id="high">--</div></div>
+          <div class="card glass"><div class="label">24H LOW</div><div class="value" id="low">--</div></div>
+          <div class="card glass"><div class="label">24H VOLUME</div><div class="value" id="volume">--</div></div>
+          <div class="card glass"><div class="label">QUOTE VOLUME</div><div class="value" id="quoteVolume">--</div></div>
+          <div class="card glass"><div class="label">24H RANGE</div><div class="value" id="range">--</div></div>
+          <div class="card glass"><div class="label">SENTIMENT</div><div class="value" id="sentiment">NEUTRAL</div></div>
         </div>
 
-        <div class="order-gauge-row">
-          <div class="orderbook">
-            <div class="holo"></div>
+        <div class="split">
+          <div class="order glass">
             <h4>ORDER BOOK PRESSURE</h4>
-            <div id="bookWrap"></div>
+            <div id="orderLines"></div>
           </div>
 
-          <div class="gauge">
-            <div class="holo"></div>
-            <h4>FEAR • GREED INDEX</h4>
-            <div class="gauge-wrap">
+          <div class="gauge glass">
+            <h4>FEAR • GREED</h4>
+            <div class="gwrap">
               <svg viewBox="0 0 120 120">
-                <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="10"/>
-                <circle id="gaugeArc" cx="60" cy="60" r="48" fill="none" stroke="url(#gGrad)" stroke-width="10" stroke-linecap="round" stroke-dasharray="301.6" stroke-dashoffset="301.6"/>
+                <circle cx="60" cy="60" r="46" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="10"/>
+                <circle id="gArc" cx="60" cy="60" r="46" fill="none" stroke="url(#gg)" stroke-width="10" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="289"/>
                 <defs>
-                  <linearGradient id="gGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#ff4b63"/>
+                  <linearGradient id="gg" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#ff4f67"/>
                     <stop offset="50%" stop-color="#ffb84d"/>
                     <stop offset="100%" stop-color="#00ff9d"/>
                   </linearGradient>
                 </defs>
               </svg>
-              <div class="gauge-text" id="gaugeText">50</div>
+              <div class="gtext" id="gText">50</div>
             </div>
-            <div class="gauge-sub" id="gaugeLabel">NEUTRAL</div>
+            <div class="glabel" id="gLabel">NEUTRAL</div>
           </div>
         </div>
 
-        <div class="alert-panel">
-          <div class="holo"></div>
+        <div class="alerts glass">
           <h4>PRICE ALERTS</h4>
-          <div class="alert-grid">
-            <input id="alertInput" class="alert-input" type="number" step="0.01" placeholder="Enter BTC price (e.g. 120000)">
-            <button id="addAlertBtn" class="alert-btn">ADD ALERT</button>
+          <div class="alertRow">
+            <input id="aInput" class="ainput" type="number" placeholder="BTC price e.g. 70000">
+            <button id="aBtn" class="abtn">ADD</button>
           </div>
-          <div class="alert-list" id="alertList"></div>
+          <div class="alist" id="aList">No alerts set</div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <footer class="footer">
-      <div class="holo"></div>
-      <div><strong>ULTRA MODE</strong> • TRILLION-DOLLAR EXECUTIVE CRYPTO CONSOLE</div>
+    <footer class="foot glass">
+      <div><strong>ULTRA MODE</strong> • EXECUTIVE CRYPTO WIDGET</div>
       <div class="clock" id="clock">--</div>
     </footer>
   </div>
 
   <script>
-    // -------------------------------
-    // Particle field
-    // -------------------------------
-    const particles = document.getElementById("particles");
-    for(let i=0;i<36;i++){
-      const p=document.createElement("span");
-      p.className="particle";
-      p.style.left=(Math.random()*100)+"vw";
-      p.style.animationDuration=(9+Math.random()*12)+"s";
-      p.style.animationDelay=(-Math.random()*20)+"s";
-      p.style.opacity=(.2+Math.random()*.58).toFixed(2);
-      p.style.transform=`scale(${(0.65+Math.random()*1.4).toFixed(2)})`;
-      particles.appendChild(p);
-    }
-
-    // -------------------------------
-    // Core State
-    // -------------------------------
-    const app = document.getElementById("app");
     const canvas = document.getElementById("chart");
     const ctx = canvas.getContext("2d");
 
     let prices = [];
     let lastPrice = null;
-    let selectedTF = "1m";
+    let tf = "1m";
+    let timer = null;
     let updateMs = 1000;
-    let soundOn = true;
-    const alerts = []; // {id, value, hit}
+    const alerts = [];
 
-    const tfMap = {
-      "1m": 1000,
-      "5m": 1800,
-      "15m": 3000,
-      "1h": 5000
-    };
+    const tfSpeed = { "1m":1000, "5m":1800, "15m":2800, "1h":4200 };
 
     function resizeCanvas(){
       canvas.width = canvas.clientWidth;
@@ -481,335 +535,222 @@
     addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    function fmtUSD(n,d=2){
-      return "$"+Number(n).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
-    }
-    function fmtCompact(n){
-      return Number(n).toLocaleString(undefined,{maximumFractionDigits:2});
+    function usd(n,d=2){
+      return "$" + Number(n).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
     }
 
-    function animateTextValue(el, from, to, formatter, ms=420){
-      const start = performance.now();
-      function frame(t){
-        const p = Math.min((t-start)/ms,1);
-        const e = 1 - Math.pow(1-p,3);
-        const v = from + (to-from)*e;
-        el.textContent = formatter(v);
-        if(p<1) requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
+    function compact(n){
+      return Number(n).toLocaleString(undefined,{maximumFractionDigits:2});
     }
 
     function drawChart(){
       ctx.clearRect(0,0,canvas.width,canvas.height);
       if(prices.length<2) return;
 
-      const min = Math.min(...prices);
-      const max = Math.max(...prices);
-      const range = (max-min)||1;
-      const pad = 16;
+      const min=Math.min(...prices);
+      const max=Math.max(...prices);
+      const range=(max-min)||1;
+      const pad=10;
 
-      const grad = ctx.createLinearGradient(0,0,canvas.width,0);
-      grad.addColorStop(0,getComputedStyle(document.body).getPropertyValue('--cyan').trim());
-      grad.addColorStop(.5,getComputedStyle(document.body).getPropertyValue('--blue').trim());
-      grad.addColorStop(1,getComputedStyle(document.body).getPropertyValue('--gold').trim());
+      const g=ctx.createLinearGradient(0,0,canvas.width,0);
+      g.addColorStop(0,"#28e8ff");
+      g.addColorStop(.5,"#2e8bff");
+      g.addColorStop(1,"#ffb84d");
 
       ctx.beginPath();
-      const points = prices.length;
       prices.forEach((p,i)=>{
-        const x = i*(canvas.width/Math.max(points-1,1));
-        const y = canvas.height - (((p-min)/range)*(canvas.height-pad*2)+pad);
+        const x=i*(canvas.width/Math.max(prices.length-1,1));
+        const y=canvas.height-(((p-min)/range)*(canvas.height-pad*2)+pad);
         if(i===0) ctx.moveTo(x,y);
         else ctx.lineTo(x,y);
       });
 
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = 4;
-      ctx.shadowBlur = 20;
-      ctx.shadowColor = getComputedStyle(document.body).getPropertyValue('--cyan').trim();
+      ctx.strokeStyle=g;
+      ctx.lineWidth=3;
+      ctx.shadowBlur=15;
+      ctx.shadowColor="rgba(40,232,255,.65)";
       ctx.stroke();
 
       ctx.lineTo(canvas.width,canvas.height);
       ctx.lineTo(0,canvas.height);
       ctx.closePath();
 
-      const fill = ctx.createLinearGradient(0,0,0,canvas.height);
-      fill.addColorStop(0,"rgba(0,246,255,.25)");
-      fill.addColorStop(1,"rgba(0,246,255,0)");
-      ctx.shadowBlur = 0;
-      ctx.fillStyle = fill;
+      const fill=ctx.createLinearGradient(0,0,0,canvas.height);
+      fill.addColorStop(0,"rgba(40,232,255,.26)");
+      fill.addColorStop(1,"rgba(40,232,255,0)");
+      ctx.shadowBlur=0;
+      ctx.fillStyle=fill;
       ctx.fill();
     }
 
-    function setGauge(score){
-      const arc = document.getElementById("gaugeArc");
-      const text = document.getElementById("gaugeText");
-      const label = document.getElementById("gaugeLabel");
+    function setGauge(v){
+      const arc=document.getElementById("gArc");
+      const t=document.getElementById("gText");
+      const l=document.getElementById("gLabel");
+      const C=289;
+      const p=Math.max(0,Math.min(100,v))/100;
+      arc.style.strokeDashoffset=String(C*(1-p));
+      t.textContent=Math.round(v);
 
-      const circ = 2*Math.PI*48; // 301.6
-      const pct = Math.max(0,Math.min(100,score))/100;
-      arc.style.strokeDashoffset = String(circ*(1-pct));
-      text.textContent = String(Math.round(score));
+      if(v>=67){ l.textContent="GREED"; l.style.color="#00ff9d"; }
+      else if(v<=33){ l.textContent="FEAR"; l.style.color="#ff4f67"; }
+      else { l.textContent="NEUTRAL"; l.style.color="#e9fbff"; }
+    }
 
-      if(score >= 67){
-        label.textContent = "GREED";
-        label.style.color = "#00ff9d";
-      }else if(score <= 33){
-        label.textContent = "FEAR";
-        label.style.color = "#ff4b63";
-      }else{
-        label.textContent = "NEUTRAL";
-        label.style.color = "#eaf8ff";
+    function updateOrderSim(price){
+      const wrap=document.getElementById("orderLines");
+      wrap.innerHTML="";
+      for(let i=0;i<4;i++){
+        const bp=price-(Math.random()*60+i*16);
+        const ap=price+(Math.random()*60+i*16);
+        const bs=25+Math.random()*70;
+        const as=25+Math.random()*70;
+
+        const b=document.createElement("div");
+        b.className="line";
+        b.innerHTML=`<div class="fillBid" style="width:${bs}%"></div><span>BID ${usd(bp,0)}</span><span>${bs.toFixed(0)}%</span>`;
+        wrap.appendChild(b);
+
+        const a=document.createElement("div");
+        a.className="line";
+        a.innerHTML=`<div class="fillAsk" style="width:${as}%"></div><span>ASK ${usd(ap,0)}</span><span>${as.toFixed(0)}%</span>`;
+        wrap.appendChild(a);
       }
     }
 
-    function updateOrderBookSim(price){
-      const wrap = document.getElementById("bookWrap");
-      wrap.innerHTML = "";
-
-      for(let i=0;i<5;i++){
-        const bidP = price - (Math.random()*80 + i*25);
-        const askP = price + (Math.random()*80 + i*25);
-        const bidS = 20 + Math.random()*80;
-        const askS = 20 + Math.random()*80;
-
-        const bid = document.createElement("div");
-        bid.className="book-line";
-        bid.innerHTML = `<div class="fill-bid" style="width:${bidS}%"></div><span>BID ${fmtUSD(bidP,2)}</span><span>${bidS.toFixed(1)}%</span>`;
-        wrap.appendChild(bid);
-
-        const ask = document.createElement("div");
-        ask.className="book-line";
-        ask.innerHTML = `<div class="fill-ask" style="width:${askS}%"></div><span>ASK ${fmtUSD(askP,2)}</span><span>${askS.toFixed(1)}%</span>`;
-        wrap.appendChild(ask);
+    function updateTape(price){
+      const a=document.getElementById("trackA");
+      const b=document.getElementById("trackB");
+      let html="";
+      for(let i=0;i<18;i++){
+        const side=Math.random()>.5?"buy":"sell";
+        const px=price+(Math.random()-.5)*120;
+        const qty=(Math.random()*1.9+.02).toFixed(3);
+        html += `<span class="${side}">${side.toUpperCase()} ${usd(px,2)} • ${qty} BTC</span>`;
       }
-    }
-
-    function updateTradeTape(price){
-      const track = document.getElementById("tapeTrack");
-      const clone = document.getElementById("tapeTrackClone");
-      let html = "";
-      for(let i=0;i<28;i++){
-        const side = Math.random()>.5 ? "buy":"sell";
-        const px = price + (Math.random()-.5)*140;
-        const qty = (Math.random()*2.4+.01).toFixed(3);
-        html += `<span class="trade ${side}">${side.toUpperCase()} ${fmtUSD(px,2)} • ${qty} BTC</span>`;
-      }
-      track.innerHTML = html;
-      clone.innerHTML = html;
-    }
-
-    function updateSentiment(change){
-      const s = document.getElementById("sentiment");
-      let score = 50;
-
-      if(change > 2){
-        s.textContent = "STRONG BULL";
-        s.style.color = "#00ff9d";
-        score = 78 + Math.min(20,change*2);
-      }else if(change > 0.5){
-        s.textContent = "BULLISH";
-        s.style.color = "#6affc0";
-        score = 62 + change*6;
-      }else if(change < -2){
-        s.textContent = "STRONG BEAR";
-        s.style.color = "#ff4b63";
-        score = 18;
-      }else if(change < -0.5){
-        s.textContent = "BEARISH";
-        s.style.color = "#ff8298";
-        score = 35 + change*6; // negative impact
-      }else{
-        s.textContent = "NEUTRAL";
-        s.style.color = "#eaf8ff";
-        score = 50;
-      }
-
-      setGauge(Math.max(0,Math.min(100,score)));
-    }
-
-    function beep(){
-      if(!soundOn) return;
-      try{
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        const ctx = new AudioCtx();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = "sine";
-        osc.frequency.value = 880;
-        gain.gain.value = 0.03;
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        setTimeout(()=>{osc.stop();ctx.close();},120);
-      }catch(e){}
+      a.innerHTML=html;
+      b.innerHTML=html;
     }
 
     function renderAlerts(){
-      const list = document.getElementById("alertList");
-      if(!alerts.length){
-        list.innerHTML = `<div class="alert-item"><span>No alerts set</span><span class="badge">IDLE</span></div>`;
-        return;
-      }
-      list.innerHTML = alerts.map(a=>`
-        <div class="alert-item">
-          <span>${fmtUSD(a.value,2)}</span>
-          <span class="badge">${a.hit ? "TRIGGERED" : "ACTIVE"}</span>
-        </div>
-      `).join("");
+      const box=document.getElementById("aList");
+      if(!alerts.length){ box.textContent="No alerts set"; return; }
+      box.innerHTML=alerts.map(x=>`${usd(x.value,2)} — ${x.hit?"TRIGGERED":"ACTIVE"}`).join("<br>");
     }
 
-    function checkAlerts(price){
+    function checkAlerts(p){
       alerts.forEach(a=>{
         if(a.hit || lastPrice===null) return;
-        const crossed = (lastPrice < a.value && price >= a.value) || (lastPrice > a.value && price <= a.value);
-        if(crossed){
-          a.hit = true;
-          app.classList.add("flash-alert");
-          setTimeout(()=>app.classList.remove("flash-alert"),420);
-          beep();
-        }
+        const cross=(lastPrice<a.value && p>=a.value)||(lastPrice>a.value && p<=a.value);
+        if(cross) a.hit=true;
       });
       renderAlerts();
     }
 
-    async function updateBTC(){
+    function sentimentFromChange(ch){
+      const s=document.getElementById("sentiment");
+      let gauge=50;
+
+      if(ch>2){ s.textContent="STRONG BULL"; s.style.color="#00ff9d"; gauge=82; }
+      else if(ch>0.5){ s.textContent="BULLISH"; s.style.color="#82ffd0"; gauge=68; }
+      else if(ch<-2){ s.textContent="STRONG BEAR"; s.style.color="#ff4f67"; gauge=20; }
+      else if(ch<-0.5){ s.textContent="BEARISH"; s.style.color="#ff8ea0"; gauge=34; }
+      else{ s.textContent="NEUTRAL"; s.style.color="#f4feff"; gauge=50; }
+
+      setGauge(gauge);
+    }
+
+    async function update(){
       try{
-        const res = await fetch("https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT");
-        const d = await res.json();
+        const res=await fetch("https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT");
+        const d=await res.json();
 
-        const price = parseFloat(d.lastPrice);
-        const high = parseFloat(d.highPrice);
-        const low = parseFloat(d.lowPrice);
-        const vol = parseFloat(d.volume);
-        const qVol = parseFloat(d.quoteVolume);
-        const change = parseFloat(d.priceChangePercent);
+        const p=parseFloat(d.lastPrice);
+        const h=parseFloat(d.highPrice);
+        const l=parseFloat(d.lowPrice);
+        const v=parseFloat(d.volume);
+        const q=parseFloat(d.quoteVolume);
+        const c=parseFloat(d.priceChangePercent);
 
-        prices.push(price);
-        const maxPoints = selectedTF==="1m" ? 140 : selectedTF==="5m" ? 180 : selectedTF==="15m" ? 220 : 260;
-        if(prices.length>maxPoints) prices.shift();
+        prices.push(p);
+        const maxPts = tf==="1m"?100:tf==="5m"?130:tf==="15m"?160:190;
+        if(prices.length>maxPts) prices.shift();
         drawChart();
 
-        const priceEl = document.getElementById("price");
-        priceEl.classList.remove("flash");
-        void priceEl.offsetWidth;
-        priceEl.classList.add("flash");
-        priceEl.textContent = fmtUSD(price,2);
+        const priceEl=document.getElementById("price");
+        priceEl.textContent=usd(p,2);
 
-        const changeEl = document.getElementById("change");
-        changeEl.textContent = (change>=0?"+":"")+change.toFixed(2)+"%";
-        changeEl.className = "change " + (change>=0 ? "up":"down");
+        const ch=document.getElementById("change");
+        ch.textContent=(c>=0?"+":"")+c.toFixed(2)+"%";
+        ch.className="change "+(c>=0?"up":"down");
 
-        const highEl = document.getElementById("high");
-        const lowEl = document.getElementById("low");
-        const volEl = document.getElementById("volume");
-        const qVolEl = document.getElementById("quoteVolume");
-        const rangeEl = document.getElementById("range");
+        document.getElementById("high").textContent=usd(h,2);
+        document.getElementById("low").textContent=usd(l,2);
+        document.getElementById("volume").textContent=compact(v);
+        document.getElementById("quoteVolume").textContent=usd(q,0);
+        document.getElementById("range").textContent=usd(h-l,2);
 
-        const pHigh = Number(highEl.dataset.v ?? high);
-        const pLow = Number(lowEl.dataset.v ?? low);
-        const pVol = Number(volEl.dataset.v ?? vol);
-        const pQVol = Number(qVolEl.dataset.v ?? qVol);
-        const pRange = Number(rangeEl.dataset.v ?? (high-low));
+        sentimentFromChange(c);
+        updateOrderSim(p);
+        updateTape(p);
 
-        animateTextValue(highEl,pHigh,high,v=>fmtUSD(v,2));
-        animateTextValue(lowEl,pLow,low,v=>fmtUSD(v,2));
-        animateTextValue(volEl,pVol,vol,v=>fmtCompact(v));
-        animateTextValue(qVolEl,pQVol,qVol,v=>fmtUSD(v,0));
-        animateTextValue(rangeEl,pRange,(high-low),v=>fmtUSD(v,2));
-
-        highEl.dataset.v = high;
-        lowEl.dataset.v = low;
-        volEl.dataset.v = vol;
-        qVolEl.dataset.v = qVol;
-        rangeEl.dataset.v = (high-low);
-
-        updateSentiment(change);
-        updateOrderBookSim(price);
-        updateTradeTape(price);
-        checkAlerts(price);
-        lastPrice = price;
-
+        checkAlerts(p);
+        lastPrice=p;
       }catch(e){
-        document.getElementById("price").textContent = "OFFLINE";
+        document.getElementById("price").textContent="OFFLINE";
       }
     }
 
-    function updateClock(){
-      document.getElementById("clock").textContent = new Date().toLocaleString();
+    function tickClock(){
+      document.getElementById("clock").textContent=new Date().toLocaleString();
     }
 
-    // Timeframe controls
-    let timer = null;
-    function restartFeed(){
+    function restart(){
       if(timer) clearInterval(timer);
-      updateMs = tfMap[selectedTF] || 1000;
-      timer = setInterval(updateBTC, updateMs);
+      updateMs=tfSpeed[tf]||1000;
+      timer=setInterval(update,updateMs);
     }
 
-    document.getElementById("timeframes").addEventListener("click",e=>{
-      const b = e.target.closest("button[data-tf]");
+    document.getElementById("timeframes").addEventListener("click",(e)=>{
+      const b=e.target.closest("button[data-tf]");
       if(!b) return;
       document.querySelectorAll("#timeframes .chip").forEach(x=>x.classList.remove("active"));
       b.classList.add("active");
-      selectedTF = b.dataset.tf;
-      restartFeed();
+      tf=b.dataset.tf;
+      restart();
     });
 
-    // Theme controls
-    document.getElementById("themes").addEventListener("click",e=>{
-      const b = e.target.closest("button[data-theme]");
+    document.getElementById("themes").addEventListener("click",(e)=>{
+      const b=e.target.closest("button[data-theme]");
       if(!b) return;
       document.querySelectorAll("#themes .chip").forEach(x=>x.classList.remove("active"));
       b.classList.add("active");
-      const t = b.dataset.theme;
-      document.body.classList.remove("theme-cyber","theme-gold","theme-red");
-      if(t==="gold") document.body.classList.add("theme-gold");
-      else if(t==="red") document.body.classList.add("theme-red");
-      else document.body.classList.add("theme-cyber");
+      const t=b.dataset.theme;
+      if(t==="gold"){
+        document.documentElement.style.setProperty("--cyan","#ffd166");
+        document.documentElement.style.setProperty("--blue","#ff9f43");
+      }else if(t==="red"){
+        document.documentElement.style.setProperty("--cyan","#ff6b81");
+        document.documentElement.style.setProperty("--blue","#ff4f67");
+      }else{
+        document.documentElement.style.setProperty("--cyan","#28e8ff");
+        document.documentElement.style.setProperty("--blue","#2e8bff");
+      }
       drawChart();
     });
 
-    // Fullscreen
-    document.getElementById("fullscreenBtn").addEventListener("click", async ()=>{
-      try{
-        if(!document.fullscreenElement) await document.documentElement.requestFullscreen();
-        else await document.exitFullscreen();
-      }catch(e){}
-    });
-
-    // Sound toggle
-    document.getElementById("soundBtn").addEventListener("click",(e)=>{
-      soundOn = !soundOn;
-      e.currentTarget.textContent = "SOUND: " + (soundOn ? "ON":"OFF");
-    });
-
-    // Alerts
-    const alertInput = document.getElementById("alertInput");
-    document.getElementById("addAlertBtn").addEventListener("click",()=>{
-      const v = parseFloat(alertInput.value);
-      if(!isFinite(v) || v<=0) return;
-      alerts.push({id:Date.now()+Math.random(), value:v, hit:false});
-      alertInput.value = "";
+    document.getElementById("aBtn").addEventListener("click",()=>{
+      const val=parseFloat(document.getElementById("aInput").value);
+      if(!isFinite(val) || val<=0) return;
+      alerts.push({value:val,hit:false});
+      document.getElementById("aInput").value="";
       renderAlerts();
     });
 
-    // Kiosk cursor auto-hide after idle
-    let idleTimer = null;
-    function resetIdle(){
-      document.body.style.cursor = "default";
-      if(idleTimer) clearTimeout(idleTimer);
-      idleTimer = setTimeout(()=>{document.body.style.cursor="none";},4000);
-    }
-    ["mousemove","mousedown","keydown","touchstart"].forEach(ev=>addEventListener(ev,resetIdle,{passive:true}));
-    resetIdle();
-
-    // Boot
-    renderAlerts();
-    updateClock();
-    updateBTC();
-    restartFeed();
-    setInterval(updateClock,1000);
+    tickClock();
+    update();
+    restart();
+    setInterval(tickClock,1000);
   </script>
 </body>
 </html>
