@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HYTE Y70 | BTC QUANTUM TERMINAL X</title>
+  <title>HYTE Y70 | BTC TRILLION TERMINAL Ω</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg0:#03040a;
-      --bg1:#060913;
+      --bg1:#070b15;
       --glass:rgba(255,255,255,.06);
-      --line:rgba(180,230,255,.2);
-      --text:#eaf8ff;
-      --muted:#8ea8b8;
+      --line:rgba(173,226,255,.24);
+
+      --text:#ebf9ff;
+      --muted:#90a9ba;
+
       --cyan:#00f6ff;
       --blue:#2b7bff;
       --violet:#8b5cf6;
@@ -21,113 +23,93 @@
       --green:#00ff9d;
       --red:#ff4b63;
 
-      --shadow-cyan:0 0 25px rgba(0,246,255,.35), 0 0 75px rgba(0,246,255,.14);
-      --shadow-gold:0 0 20px rgba(255,184,77,.35), 0 0 60px rgba(255,184,77,.18);
-      --shadow-deep:0 14px 40px rgba(0,0,0,.45);
+      --shadow-cyan:0 0 24px rgba(0,246,255,.34),0 0 70px rgba(0,246,255,.15);
+      --shadow-gold:0 0 18px rgba(255,184,77,.35),0 0 52px rgba(255,184,77,.18);
+      --shadow-deep:0 16px 40px rgba(0,0,0,.45);
+    }
+
+    /* Theme Variants */
+    body.theme-gold{
+      --cyan:#ffcf66;
+      --blue:#ff9f43;
+      --violet:#ffd56f;
+      --line:rgba(255,214,130,.30);
+      --shadow-cyan:0 0 24px rgba(255,196,90,.35),0 0 70px rgba(255,173,66,.18);
+      --text:#fff7e9;
+      --muted:#d7b98f;
+    }
+
+    body.theme-red{
+      --cyan:#ff4b63;
+      --blue:#ff7a7a;
+      --violet:#ff5f8f;
+      --line:rgba(255,125,145,.30);
+      --shadow-cyan:0 0 24px rgba(255,75,99,.35),0 0 70px rgba(255,90,120,.18);
+      --text:#ffeef2;
+      --muted:#d6a2ad;
     }
 
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{
       width:100%;height:100%;overflow:hidden;
-      background:
-        radial-gradient(1200px 600px at 10% 110%, rgba(0,246,255,.20), transparent 60%),
-        radial-gradient(1000px 700px at 100% -10%, rgba(43,123,255,.22), transparent 60%),
-        radial-gradient(900px 500px at 50% 120%, rgba(139,92,246,.18), transparent 55%),
-        linear-gradient(180deg,var(--bg1),var(--bg0));
-      color:var(--text);
       font-family:'Rajdhani',system-ui,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1300px 700px at -8% 110%, color-mix(in srgb, var(--cyan) 28%, transparent), transparent 58%),
+        radial-gradient(1200px 700px at 105% -10%, color-mix(in srgb, var(--blue) 30%, transparent), transparent 62%),
+        radial-gradient(1000px 560px at 60% 120%, color-mix(in srgb, var(--violet) 24%, transparent), transparent 56%),
+        linear-gradient(180deg,var(--bg1),var(--bg0));
+      cursor:default;
     }
 
-    /* Grid */
     body::before{
       content:"";
       position:fixed;inset:0;z-index:0;pointer-events:none;
       background:
-        linear-gradient(rgba(0,246,255,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,246,255,.06) 1px, transparent 1px);
-      background-size:54px 54px;
-      -webkit-mask-image:radial-gradient(circle at center, #000 36%, transparent 95%);
-      mask-image:radial-gradient(circle at center, #000 36%, transparent 95%);
+        linear-gradient(color-mix(in srgb, var(--cyan) 14%, transparent) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in srgb, var(--cyan) 14%, transparent) 1px, transparent 1px);
+      background-size:52px 52px;
+      mask-image:radial-gradient(circle at center,#000 36%,transparent 96%);
       animation:gridMove 16s linear infinite;
     }
-
-    /* Scanlines */
     body::after{
       content:"";
       position:fixed;inset:0;z-index:0;pointer-events:none;
-      background:repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,.028) 0,
-        rgba(255,255,255,.028) 1px,
-        transparent 2px,
-        transparent 4px
-      );
+      background:repeating-linear-gradient(to bottom,rgba(255,255,255,.025) 0 1px,transparent 2px 4px);
       mix-blend-mode:soft-light;
     }
+    @keyframes gridMove{from{transform:translateY(0)}to{transform:translateY(52px)}}
 
-    @keyframes gridMove{
-      from{transform:translateY(0)}
-      to{transform:translateY(54px)}
-    }
-
-    .particles{
-      position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;
-    }
+    .particles{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
     .particle{
-      position:absolute;
-      width:3px;height:3px;border-radius:999px;
-      background:var(--cyan);
-      opacity:.55;
-      box-shadow:0 0 12px var(--cyan),0 0 28px var(--cyan);
+      position:absolute;width:3px;height:3px;border-radius:99px;background:var(--cyan);
+      box-shadow:0 0 12px var(--cyan),0 0 26px var(--cyan);opacity:.55;
       animation:floatUp linear infinite;
     }
     @keyframes floatUp{
       from{transform:translateY(110vh) translateX(0);opacity:0}
-      8%{opacity:.65}
-      92%{opacity:.65}
+      10%{opacity:.65}
+      90%{opacity:.65}
       to{transform:translateY(-20vh) translateX(35px);opacity:0}
     }
 
     .app{
-      position:relative;z-index:2;
-      width:100vw;height:100vh;
-      padding:22px;
-      display:grid;
-      grid-template-rows:auto 1fr auto;
-      gap:16px;
+      position:relative;z-index:2;height:100vh;width:100vw;padding:14px;
+      display:grid;grid-template-rows:auto auto 1fr auto;gap:10px;
     }
 
-    .topbar,.panel,.card,.footer{
-      position:relative;
-      overflow:hidden;
-      border:1px solid var(--line);
-      border-radius:18px;
+    .topbar,.subbar,.panel,.card,.footer,.tape,.orderbook,.alert-panel,.gauge{
+      position:relative;overflow:hidden;border-radius:16px;border:1px solid var(--line);
       background:linear-gradient(140deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
-      backdrop-filter:blur(12px);
-      -webkit-backdrop-filter:blur(12px);
-      box-shadow:var(--shadow-deep), var(--shadow-cyan);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      box-shadow:var(--shadow-deep),var(--shadow-cyan);
     }
 
-    /* animated border glow */
-    .topbar::before,.panel::before,.card::before,.footer::before{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      border-radius:inherit;
-      padding:1px;
-      background:linear-gradient(
-        120deg,
-        rgba(0,246,255,0),
-        rgba(0,246,255,.55),
-        rgba(255,184,77,.35),
-        rgba(139,92,246,.45),
-        rgba(0,246,255,0)
-      );
-      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor;
-      mask-composite:exclude;
-      opacity:.62;
-      pointer-events:none;
+    .topbar::before,.subbar::before,.panel::before,.card::before,.footer::before,.tape::before,.orderbook::before,.alert-panel::before,.gauge::before{
+      content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;opacity:.62;
+      background:linear-gradient(120deg,transparent,color-mix(in srgb, var(--cyan) 65%, transparent),color-mix(in srgb, var(--gold) 45%, transparent),color-mix(in srgb, var(--violet) 45%, transparent),transparent);
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;mask-composite:exclude;
       animation:borderFlow 6s linear infinite;
     }
     @keyframes borderFlow{
@@ -137,392 +119,598 @@
     }
 
     .holo{
-      position:absolute;inset:0;pointer-events:none;
-      background:linear-gradient(115deg, transparent 36%, rgba(255,255,255,.12) 49%, transparent 63%);
-      transform:translateX(-130%);
-      animation:holoSweep 4.5s ease-in-out infinite;
-      mix-blend-mode:screen;
+      position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
+      background:linear-gradient(115deg,transparent 37%,rgba(255,255,255,.12) 49%,transparent 63%);
+      transform:translateX(-130%);animation:holoSweep 4.6s ease-in-out infinite;
     }
     @keyframes holoSweep{
       0%,12%{transform:translateX(-130%);opacity:0}
-      22%,58%{opacity:.7}
+      22%,60%{opacity:.72}
       100%{transform:translateX(130%);opacity:0}
     }
 
     .topbar{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px 18px;
+      padding:10px 14px;display:flex;align-items:center;justify-content:space-between;
     }
-
-    .brand{display:flex;align-items:center;gap:14px}
+    .brand{display:flex;align-items:center;gap:12px}
     .btc{
-      font-family:'Orbitron',sans-serif;
-      font-size:50px;line-height:1;
-      color:var(--gold);
-      text-shadow:var(--shadow-gold);
-      animation:logoPulse 2.2s ease-in-out infinite alternate;
+      font-family:'Orbitron',sans-serif;font-size:42px;line-height:1;color:var(--gold);
+      text-shadow:var(--shadow-gold);animation:logoPulse 2.2s ease-in-out infinite alternate;
     }
-    @keyframes logoPulse{
-      from{transform:scale(1)}
-      to{transform:scale(1.07)}
-    }
+    @keyframes logoPulse{from{transform:scale(1)}to{transform:scale(1.08)}}
+    .title{font-family:'Orbitron',sans-serif;font-weight:900;font-size:17px}
+    .subtitle{margin-top:1px;font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
 
-    .title{
-      font-family:'Orbitron',sans-serif;
-      font-weight:900;
-      font-size:20px;
-      letter-spacing:.8px;
-    }
-    .subtitle{
-      margin-top:2px;
-      font-size:12px;
-      letter-spacing:2.2px;
-      text-transform:uppercase;
-      color:var(--muted);
-    }
-
-    .status{
-      display:flex;align-items:center;gap:9px;
-      font-weight:700;letter-spacing:1px;color:#befff4;
-    }
-    .dot{
-      width:10px;height:10px;border-radius:50%;
-      background:var(--green);
-      box-shadow:0 0 12px var(--green),0 0 28px var(--green);
-      animation:blink 1.1s infinite;
-    }
+    .status{display:flex;align-items:center;gap:8px;font-weight:700;color:#bdfff2}
+    .dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green),0 0 20px var(--green);animation:blink 1.2s infinite}
     @keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
 
+    .subbar{
+      padding:8px 10px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;
+    }
+
+    .timeframes,.themes,.actions{
+      display:flex;gap:6px;flex-wrap:wrap;align-items:center;
+    }
+
+    .chip{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      padding:7px 10px;border-radius:10px;
+      font-size:11px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;
+      cursor:pointer;transition:.22s;
+    }
+    .chip:hover{transform:translateY(-1px);box-shadow:0 0 18px color-mix(in srgb,var(--cyan) 45%,transparent)}
+    .chip.active{background:color-mix(in srgb,var(--cyan) 22%,transparent);box-shadow:0 0 20px color-mix(in srgb,var(--cyan) 40%,transparent)}
+    .chip.warn{border-color:rgba(255,80,110,.45)}
+
     .main{
-      display:grid;
-      grid-template-columns:1.28fr .72fr;
-      gap:16px;
       min-height:0;
+      display:grid;grid-template-columns:1.25fr .75fr;gap:10px;
     }
 
-    .panel{padding:16px;min-height:0}
-    .price-wrap{display:flex;flex-direction:column;gap:6px}
-    .pair{
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:2.4px;
-      font-size:13px;
+    .left-col{
+      min-height:0;
+      display:grid;grid-template-rows:auto 1fr auto;gap:10px;
     }
 
+    .panel{padding:12px;min-height:0}
+    .price-wrap{display:flex;flex-direction:column;gap:4px}
+    .pair{font-size:12px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
     .price{
-      font-family:'Orbitron',sans-serif;
-      font-size:clamp(40px,7.2vw,108px);
-      font-weight:900;
-      line-height:1.04;
-      text-shadow:0 0 28px rgba(0,246,255,.55);
-      transition:transform .2s ease;
+      font-family:'Orbitron',sans-serif;font-size:clamp(34px,6.4vw,92px);font-weight:900;line-height:1.04;
+      text-shadow:0 0 26px color-mix(in srgb,var(--cyan) 58%,transparent);
       word-break:break-word;
     }
     .price.flash{animation:flash .48s ease}
-    @keyframes flash{
-      50%{color:var(--cyan);text-shadow:0 0 36px var(--cyan);transform:scale(1.012)}
-    }
-
-    .change{
-      font-family:'Orbitron',sans-serif;
-      font-size:clamp(22px,3vw,38px);
-      font-weight:800;
-      margin-top:2px;
-    }
-    .up{color:var(--green);text-shadow:0 0 20px rgba(0,255,157,.45)}
-    .down{color:var(--red);text-shadow:0 0 20px rgba(255,75,99,.45)}
+    @keyframes flash{50%{color:var(--cyan);text-shadow:0 0 36px var(--cyan);transform:scale(1.01)}}
+    .change{font-family:'Orbitron',sans-serif;font-size:clamp(20px,2.7vw,34px);font-weight:800}
+    .up{color:var(--green);text-shadow:0 0 18px rgba(0,255,157,.45)}
+    .down{color:var(--red);text-shadow:0 0 18px rgba(255,75,99,.45)}
 
     canvas{
-      width:100%;
-      height:320px;
-      margin-top:10px;
-      border-radius:16px;
-      border:1px solid rgba(0,246,255,.28);
-      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      display:block;
-      box-shadow:inset 0 0 30px rgba(0,246,255,.08);
+      width:100%;height:240px;margin-top:8px;display:block;
+      border-radius:14px;border:1px solid color-mix(in srgb,var(--cyan) 35%,transparent);
+      background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));
+      box-shadow:inset 0 0 26px color-mix(in srgb,var(--cyan) 20%,transparent);
     }
 
-    .right{
-      display:grid;
-      grid-template-rows:repeat(6,1fr);
-      gap:12px;
+    .tape{
+      padding:8px 10px;
+      display:flex;align-items:center;gap:10px;
+      font-size:12px;font-weight:700;
+      white-space:nowrap;overflow:hidden;
+    }
+    .tape-track{
+      display:inline-flex;gap:16px;min-width:max-content;
+      animation:scrollTape 22s linear infinite;
+    }
+    @keyframes scrollTape{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .trade.buy{color:var(--green)}
+    .trade.sell{color:var(--red)}
+
+    .right-col{
+      min-height:0;display:grid;grid-template-rows:auto auto 1fr;gap:10px;
+    }
+
+    .metrics{
       min-height:0;
+      display:grid;grid-template-columns:1fr 1fr;gap:8px;
     }
 
     .card{
-      padding:12px 14px;
-      display:flex;flex-direction:column;justify-content:center;
-      transform-style:preserve-3d;
-      transition:transform .22s ease, box-shadow .22s ease;
+      padding:10px 10px;display:flex;flex-direction:column;justify-content:center;
+      transform-style:preserve-3d;transition:transform .22s ease,box-shadow .22s ease;
     }
     .card:hover{
-      transform:perspective(700px) rotateX(2.6deg) rotateY(-2.8deg) translateY(-3px);
-      box-shadow:0 0 40px rgba(0,246,255,.36), var(--shadow-deep);
+      transform:perspective(700px) rotateX(2.4deg) rotateY(-2.4deg) translateY(-2px);
+      box-shadow:0 0 34px color-mix(in srgb,var(--cyan) 44%,transparent),var(--shadow-deep);
     }
 
     .label{
-      font-size:18px;
-      letter-spacing:2.6px;
-      text-transform:uppercase;
-      color:var(--muted);
-      font-weight:700;
+      font-size:15px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);font-weight:700;
     }
-
     .value{
       margin-top:4px;
       font-family:'Orbitron',sans-serif;
-      font-size:clamp(24px,2.8vw,38px);
-      font-weight:800;
-      color:#ecfbff;
-      text-shadow:0 0 14px rgba(0,246,255,.38);
+      font-size:clamp(20px,2.3vw,31px);
+      font-weight:800;color:#ecfbff;text-shadow:0 0 12px color-mix(in srgb,var(--cyan) 45%,transparent);
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
 
-    .footer{
-      padding:11px 14px;
-      display:flex;align-items:center;justify-content:space-between;gap:10px;
-      color:var(--muted);
-      font-size:13px;letter-spacing:1px;
-    }
-    .footer strong{
-      color:#eaffff;
-      letter-spacing:2px;
-      font-family:'Orbitron',sans-serif;
-      font-weight:700;
-      font-size:12px;
-    }
-    .clock{
-      font-family:'Orbitron',sans-serif;
-      color:var(--cyan);
-      text-shadow:0 0 16px rgba(0,246,255,.4);
-      font-size:clamp(14px,1.8vw,21px);
+    .order-gauge-row{
+      display:grid;grid-template-columns:1fr 1fr;gap:8px;
     }
 
-    /* Portrait tuning (HYTE Y70 style) */
+    .orderbook{padding:10px}
+    .orderbook h4,.gauge h4,.alert-panel h4{
+      font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px
+    }
+
+    .book-line{
+      position:relative;height:22px;margin-bottom:5px;border-radius:8px;
+      background:rgba(255,255,255,.04);overflow:hidden;font-size:11px;
+      display:flex;align-items:center;justify-content:space-between;padding:0 8px;
+    }
+    .fill-bid,.fill-ask{
+      position:absolute;left:0;top:0;bottom:0;opacity:.30;pointer-events:none;
+    }
+    .fill-bid{background:linear-gradient(90deg,rgba(0,255,157,.65),rgba(0,255,157,.06))}
+    .fill-ask{background:linear-gradient(90deg,rgba(255,75,99,.65),rgba(255,75,99,.06))}
+
+    .gauge{padding:10px;display:grid;place-items:center}
+    .gauge-wrap{position:relative;width:150px;height:150px}
+    .gauge svg{width:100%;height:100%;transform:rotate(-90deg)}
+    .gauge-text{
+      position:absolute;inset:0;display:grid;place-items:center;
+      font-family:'Orbitron',sans-serif;font-size:20px;font-weight:900;
+    }
+    .gauge-sub{
+      margin-top:4px;font-size:11px;color:var(--muted);letter-spacing:1.4px;text-transform:uppercase
+    }
+
+    .alert-panel{padding:10px}
+    .alert-grid{display:grid;grid-template-columns:1fr auto;gap:6px}
+    .alert-input{
+      border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--text);
+      border-radius:10px;padding:8px 10px;font-size:12px;outline:none;
+    }
+    .alert-btn{
+      border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--text);
+      border-radius:10px;padding:8px 10px;font-size:12px;font-weight:700;cursor:pointer;
+    }
+    .alert-list{margin-top:8px;max-height:85px;overflow:auto;font-size:12px}
+    .alert-item{display:flex;justify-content:space-between;gap:8px;padding:4px 0;color:var(--muted)}
+    .badge{
+      display:inline-block;font-size:10px;padding:2px 6px;border-radius:999px;border:1px solid var(--line)
+    }
+
+    .footer{
+      padding:8px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;
+      font-size:12px;color:var(--muted);
+    }
+    .footer strong{
+      color:#eaffff;letter-spacing:1.8px;font-family:'Orbitron',sans-serif;font-size:11px
+    }
+    .clock{
+      font-family:'Orbitron',sans-serif;color:var(--cyan);
+      text-shadow:0 0 14px color-mix(in srgb,var(--cyan) 50%,transparent);
+      font-size:clamp(13px,1.6vw,19px);
+    }
+
+    .flash-alert{
+      animation:screenFlash .25s ease 0s 2;
+    }
+    @keyframes screenFlash{
+      50%{filter:brightness(1.3) saturate(1.2)}
+    }
+
     @media (max-width:980px){
-      .app{padding:14px;gap:12px}
+      .app{padding:10px;gap:8px}
       .main{grid-template-columns:1fr}
-      canvas{height:240px}
-      .right{
-        grid-template-columns:1fr 1fr;
-        grid-template-rows:auto auto auto;
-      }
-      .card:last-child,.card:nth-last-child(2){
-        grid-column:1/-1;
-      }
-      .btc{font-size:42px}
-      .title{font-size:16px}
-      .subtitle{font-size:11px}
-      .label{font-size:16px}
-      .value{font-size:clamp(22px,4.8vw,34px)}
+      .right-col{grid-template-rows:auto auto auto}
+      .metrics{grid-template-columns:1fr 1fr}
+      .order-gauge-row{grid-template-columns:1fr}
+      canvas{height:200px}
+      .btc{font-size:34px}
+      .title{font-size:14px}
+      .subtitle{font-size:10px}
+      .label{font-size:13px}
+      .value{font-size:clamp(18px,4.2vw,28px)}
     }
   </style>
 </head>
-<body>
+<body class="theme-cyber">
   <div class="particles" id="particles"></div>
 
-  <div class="app">
+  <div class="app" id="app">
     <header class="topbar">
       <div class="holo"></div>
       <div class="brand">
         <div class="btc">₿</div>
         <div>
-          <div class="title">HYTE Y70 • BTC QUANTUM TERMINAL X</div>
-          <div class="subtitle">Binance Spot Feed • Neural Glass Interface</div>
+          <div class="title">HYTE Y70 • BTC TRILLION TERMINAL Ω</div>
+          <div class="subtitle">Binance Feed • Quantum Glass UI</div>
         </div>
       </div>
       <div class="status"><span class="dot"></span>LIVE</div>
     </header>
 
+    <section class="subbar">
+      <div class="holo"></div>
+
+      <div class="timeframes" id="timeframes">
+        <button class="chip active" data-tf="1m">1M</button>
+        <button class="chip" data-tf="5m">5M</button>
+        <button class="chip" data-tf="15m">15M</button>
+        <button class="chip" data-tf="1h">1H</button>
+      </div>
+
+      <div class="themes" id="themes">
+        <button class="chip active" data-theme="cyber">CYBER BLUE</button>
+        <button class="chip" data-theme="gold">GOLD LUXE</button>
+        <button class="chip" data-theme="red">RED NIGHT</button>
+      </div>
+
+      <div class="actions">
+        <button class="chip" id="fullscreenBtn">FULLSCREEN</button>
+        <button class="chip warn" id="soundBtn">SOUND: ON</button>
+      </div>
+    </section>
+
     <section class="main">
-      <article class="panel">
-        <div class="holo"></div>
-        <div class="price-wrap">
-          <div class="pair">BTC / USDT</div>
-          <div class="price" id="price">LOADING...</div>
-          <div class="change" id="change">--</div>
-        </div>
-        <canvas id="chart"></canvas>
-      </article>
-
-      <aside class="right">
-        <div class="card">
+      <div class="left-col">
+        <article class="panel">
           <div class="holo"></div>
-          <div class="label">24H HIGH</div>
-          <div class="value" id="high">--</div>
-        </div>
+          <div class="price-wrap">
+            <div class="pair">BTC / USDT</div>
+            <div class="price" id="price">LOADING...</div>
+            <div class="change" id="change">--</div>
+          </div>
+          <canvas id="chart"></canvas>
+        </article>
 
-        <div class="card">
+        <div class="tape">
           <div class="holo"></div>
-          <div class="label">24H LOW</div>
-          <div class="value" id="low">--</div>
+          <strong style="color:var(--muted);font-size:11px;letter-spacing:1.5px;">LIVE TAPE</strong>
+          <div class="tape-track" id="tapeTrack"></div>
+          <div class="tape-track" id="tapeTrackClone"></div>
         </div>
+      </div>
 
-        <div class="card">
-          <div class="holo"></div>
-          <div class="label">24H VOLUME (BTC)</div>
-          <div class="value" id="volume">--</div>
-        </div>
-
-        <div class="card">
-          <div class="holo"></div>
-          <div class="label">24H QUOTE VOL (USDT)</div>
-          <div class="value" id="quoteVolume">--</div>
+      <div class="right-col">
+        <div class="metrics">
+          <div class="card"><div class="holo"></div><div class="label">24H HIGH</div><div class="value" id="high">--</div></div>
+          <div class="card"><div class="holo"></div><div class="label">24H LOW</div><div class="value" id="low">--</div></div>
+          <div class="card"><div class="holo"></div><div class="label">24H VOLUME</div><div class="value" id="volume">--</div></div>
+          <div class="card"><div class="holo"></div><div class="label">QUOTE VOLUME</div><div class="value" id="quoteVolume">--</div></div>
+          <div class="card"><div class="holo"></div><div class="label">24H RANGE</div><div class="value" id="range">--</div></div>
+          <div class="card"><div class="holo"></div><div class="label">AI SENTIMENT</div><div class="value" id="sentiment">NEUTRAL</div></div>
         </div>
 
-        <div class="card">
-          <div class="holo"></div>
-          <div class="label">24H RANGE</div>
-          <div class="value" id="range">--</div>
+        <div class="order-gauge-row">
+          <div class="orderbook">
+            <div class="holo"></div>
+            <h4>ORDER BOOK PRESSURE</h4>
+            <div id="bookWrap"></div>
+          </div>
+
+          <div class="gauge">
+            <div class="holo"></div>
+            <h4>FEAR • GREED INDEX</h4>
+            <div class="gauge-wrap">
+              <svg viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="10"/>
+                <circle id="gaugeArc" cx="60" cy="60" r="48" fill="none" stroke="url(#gGrad)" stroke-width="10" stroke-linecap="round" stroke-dasharray="301.6" stroke-dashoffset="301.6"/>
+                <defs>
+                  <linearGradient id="gGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#ff4b63"/>
+                    <stop offset="50%" stop-color="#ffb84d"/>
+                    <stop offset="100%" stop-color="#00ff9d"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="gauge-text" id="gaugeText">50</div>
+            </div>
+            <div class="gauge-sub" id="gaugeLabel">NEUTRAL</div>
+          </div>
         </div>
 
-        <div class="card">
+        <div class="alert-panel">
           <div class="holo"></div>
-          <div class="label">AI SENTIMENT</div>
-          <div class="value" id="sentiment">NEUTRAL</div>
+          <h4>PRICE ALERTS</h4>
+          <div class="alert-grid">
+            <input id="alertInput" class="alert-input" type="number" step="0.01" placeholder="Enter BTC price (e.g. 120000)">
+            <button id="addAlertBtn" class="alert-btn">ADD ALERT</button>
+          </div>
+          <div class="alert-list" id="alertList"></div>
         </div>
-      </aside>
+      </div>
     </section>
 
     <footer class="footer">
       <div class="holo"></div>
-      <div><strong>ULTRA MODE</strong> • BILLION-DOLLAR CYBER GLASS DESIGN</div>
+      <div><strong>ULTRA MODE</strong> • TRILLION-DOLLAR EXECUTIVE CRYPTO CONSOLE</div>
       <div class="clock" id="clock">--</div>
     </footer>
   </div>
 
   <script>
-    // particles
-    const particlesContainer = document.getElementById("particles");
-    for(let i=0;i<34;i++){
+    // -------------------------------
+    // Particle field
+    // -------------------------------
+    const particles = document.getElementById("particles");
+    for(let i=0;i<36;i++){
       const p=document.createElement("span");
       p.className="particle";
       p.style.left=(Math.random()*100)+"vw";
-      p.style.animationDuration=(9+Math.random()*11)+"s";
-      p.style.animationDelay=(-Math.random()*18)+"s";
-      p.style.opacity=(.22+Math.random()*.55).toFixed(2);
-      p.style.transform=`scale(${(0.65+Math.random()*1.45).toFixed(2)})`;
-      particlesContainer.appendChild(p);
+      p.style.animationDuration=(9+Math.random()*12)+"s";
+      p.style.animationDelay=(-Math.random()*20)+"s";
+      p.style.opacity=(.2+Math.random()*.58).toFixed(2);
+      p.style.transform=`scale(${(0.65+Math.random()*1.4).toFixed(2)})`;
+      particles.appendChild(p);
     }
 
+    // -------------------------------
+    // Core State
+    // -------------------------------
+    const app = document.getElementById("app");
     const canvas = document.getElementById("chart");
     const ctx = canvas.getContext("2d");
 
-    let prices=[];
-    const maxPoints=140;
+    let prices = [];
+    let lastPrice = null;
+    let selectedTF = "1m";
+    let updateMs = 1000;
+    let soundOn = true;
+    const alerts = []; // {id, value, hit}
+
+    const tfMap = {
+      "1m": 1000,
+      "5m": 1800,
+      "15m": 3000,
+      "1h": 5000
+    };
 
     function resizeCanvas(){
-      canvas.width=canvas.clientWidth;
-      canvas.height=canvas.clientHeight;
+      canvas.width = canvas.clientWidth;
+      canvas.height = canvas.clientHeight;
       drawChart();
     }
     addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    function drawChart(){
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      if(prices.length<2) return;
-
-      const min=Math.min(...prices);
-      const max=Math.max(...prices);
-      const range=(max-min)||1;
-      const pad=18;
-
-      const grad=ctx.createLinearGradient(0,0,canvas.width,0);
-      grad.addColorStop(0,"#00f6ff");
-      grad.addColorStop(.48,"#2b7bff");
-      grad.addColorStop(1,"#ffb84d");
-
-      // line
-      ctx.beginPath();
-      prices.forEach((p,i)=>{
-        const x=i*(canvas.width/(maxPoints-1));
-        const y=canvas.height-(((p-min)/range)*(canvas.height-pad*2)+pad);
-        if(i===0) ctx.moveTo(x,y);
-        else ctx.lineTo(x,y);
-      });
-
-      ctx.strokeStyle=grad;
-      ctx.lineWidth=4;
-      ctx.shadowBlur=22;
-      ctx.shadowColor="rgba(0,246,255,.75)";
-      ctx.stroke();
-
-      // area fill
-      ctx.lineTo(canvas.width, canvas.height);
-      ctx.lineTo(0, canvas.height);
-      ctx.closePath();
-
-      const fill=ctx.createLinearGradient(0,0,0,canvas.height);
-      fill.addColorStop(0,"rgba(0,246,255,.28)");
-      fill.addColorStop(1,"rgba(0,246,255,0)");
-      ctx.shadowBlur=0;
-      ctx.fillStyle=fill;
-      ctx.fill();
+    function fmtUSD(n,d=2){
+      return "$"+Number(n).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
     }
-
-    function fmtUSD(n, d=2){
-      return "$"+Number(n).toLocaleString(undefined,{
-        minimumFractionDigits:d,
-        maximumFractionDigits:d
-      });
-    }
-
     function fmtCompact(n){
       return Number(n).toLocaleString(undefined,{maximumFractionDigits:2});
     }
 
     function animateTextValue(el, from, to, formatter, ms=420){
-      const start=performance.now();
+      const start = performance.now();
       function frame(t){
-        const p=Math.min((t-start)/ms,1);
-        const eased=1-Math.pow(1-p,3);
-        const v=from+(to-from)*eased;
-        el.textContent=formatter(v);
+        const p = Math.min((t-start)/ms,1);
+        const e = 1 - Math.pow(1-p,3);
+        const v = from + (to-from)*e;
+        el.textContent = formatter(v);
         if(p<1) requestAnimationFrame(frame);
       }
       requestAnimationFrame(frame);
     }
 
+    function drawChart(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      if(prices.length<2) return;
+
+      const min = Math.min(...prices);
+      const max = Math.max(...prices);
+      const range = (max-min)||1;
+      const pad = 16;
+
+      const grad = ctx.createLinearGradient(0,0,canvas.width,0);
+      grad.addColorStop(0,getComputedStyle(document.body).getPropertyValue('--cyan').trim());
+      grad.addColorStop(.5,getComputedStyle(document.body).getPropertyValue('--blue').trim());
+      grad.addColorStop(1,getComputedStyle(document.body).getPropertyValue('--gold').trim());
+
+      ctx.beginPath();
+      const points = prices.length;
+      prices.forEach((p,i)=>{
+        const x = i*(canvas.width/Math.max(points-1,1));
+        const y = canvas.height - (((p-min)/range)*(canvas.height-pad*2)+pad);
+        if(i===0) ctx.moveTo(x,y);
+        else ctx.lineTo(x,y);
+      });
+
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 4;
+      ctx.shadowBlur = 20;
+      ctx.shadowColor = getComputedStyle(document.body).getPropertyValue('--cyan').trim();
+      ctx.stroke();
+
+      ctx.lineTo(canvas.width,canvas.height);
+      ctx.lineTo(0,canvas.height);
+      ctx.closePath();
+
+      const fill = ctx.createLinearGradient(0,0,0,canvas.height);
+      fill.addColorStop(0,"rgba(0,246,255,.25)");
+      fill.addColorStop(1,"rgba(0,246,255,0)");
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = fill;
+      ctx.fill();
+    }
+
+    function setGauge(score){
+      const arc = document.getElementById("gaugeArc");
+      const text = document.getElementById("gaugeText");
+      const label = document.getElementById("gaugeLabel");
+
+      const circ = 2*Math.PI*48; // 301.6
+      const pct = Math.max(0,Math.min(100,score))/100;
+      arc.style.strokeDashoffset = String(circ*(1-pct));
+      text.textContent = String(Math.round(score));
+
+      if(score >= 67){
+        label.textContent = "GREED";
+        label.style.color = "#00ff9d";
+      }else if(score <= 33){
+        label.textContent = "FEAR";
+        label.style.color = "#ff4b63";
+      }else{
+        label.textContent = "NEUTRAL";
+        label.style.color = "#eaf8ff";
+      }
+    }
+
+    function updateOrderBookSim(price){
+      const wrap = document.getElementById("bookWrap");
+      wrap.innerHTML = "";
+
+      for(let i=0;i<5;i++){
+        const bidP = price - (Math.random()*80 + i*25);
+        const askP = price + (Math.random()*80 + i*25);
+        const bidS = 20 + Math.random()*80;
+        const askS = 20 + Math.random()*80;
+
+        const bid = document.createElement("div");
+        bid.className="book-line";
+        bid.innerHTML = `<div class="fill-bid" style="width:${bidS}%"></div><span>BID ${fmtUSD(bidP,2)}</span><span>${bidS.toFixed(1)}%</span>`;
+        wrap.appendChild(bid);
+
+        const ask = document.createElement("div");
+        ask.className="book-line";
+        ask.innerHTML = `<div class="fill-ask" style="width:${askS}%"></div><span>ASK ${fmtUSD(askP,2)}</span><span>${askS.toFixed(1)}%</span>`;
+        wrap.appendChild(ask);
+      }
+    }
+
+    function updateTradeTape(price){
+      const track = document.getElementById("tapeTrack");
+      const clone = document.getElementById("tapeTrackClone");
+      let html = "";
+      for(let i=0;i<28;i++){
+        const side = Math.random()>.5 ? "buy":"sell";
+        const px = price + (Math.random()-.5)*140;
+        const qty = (Math.random()*2.4+.01).toFixed(3);
+        html += `<span class="trade ${side}">${side.toUpperCase()} ${fmtUSD(px,2)} • ${qty} BTC</span>`;
+      }
+      track.innerHTML = html;
+      clone.innerHTML = html;
+    }
+
+    function updateSentiment(change){
+      const s = document.getElementById("sentiment");
+      let score = 50;
+
+      if(change > 2){
+        s.textContent = "STRONG BULL";
+        s.style.color = "#00ff9d";
+        score = 78 + Math.min(20,change*2);
+      }else if(change > 0.5){
+        s.textContent = "BULLISH";
+        s.style.color = "#6affc0";
+        score = 62 + change*6;
+      }else if(change < -2){
+        s.textContent = "STRONG BEAR";
+        s.style.color = "#ff4b63";
+        score = 18;
+      }else if(change < -0.5){
+        s.textContent = "BEARISH";
+        s.style.color = "#ff8298";
+        score = 35 + change*6; // negative impact
+      }else{
+        s.textContent = "NEUTRAL";
+        s.style.color = "#eaf8ff";
+        score = 50;
+      }
+
+      setGauge(Math.max(0,Math.min(100,score)));
+    }
+
+    function beep(){
+      if(!soundOn) return;
+      try{
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = 880;
+        gain.gain.value = 0.03;
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        setTimeout(()=>{osc.stop();ctx.close();},120);
+      }catch(e){}
+    }
+
+    function renderAlerts(){
+      const list = document.getElementById("alertList");
+      if(!alerts.length){
+        list.innerHTML = `<div class="alert-item"><span>No alerts set</span><span class="badge">IDLE</span></div>`;
+        return;
+      }
+      list.innerHTML = alerts.map(a=>`
+        <div class="alert-item">
+          <span>${fmtUSD(a.value,2)}</span>
+          <span class="badge">${a.hit ? "TRIGGERED" : "ACTIVE"}</span>
+        </div>
+      `).join("");
+    }
+
+    function checkAlerts(price){
+      alerts.forEach(a=>{
+        if(a.hit || lastPrice===null) return;
+        const crossed = (lastPrice < a.value && price >= a.value) || (lastPrice > a.value && price <= a.value);
+        if(crossed){
+          a.hit = true;
+          app.classList.add("flash-alert");
+          setTimeout(()=>app.classList.remove("flash-alert"),420);
+          beep();
+        }
+      });
+      renderAlerts();
+    }
+
     async function updateBTC(){
       try{
-        const res=await fetch("https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT");
-        const d=await res.json();
+        const res = await fetch("https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT");
+        const d = await res.json();
 
-        const price=parseFloat(d.lastPrice);
-        const high=parseFloat(d.highPrice);
-        const low=parseFloat(d.lowPrice);
-        const change=parseFloat(d.priceChangePercent);
-        const vol=parseFloat(d.volume);
-        const qVol=parseFloat(d.quoteVolume);
+        const price = parseFloat(d.lastPrice);
+        const high = parseFloat(d.highPrice);
+        const low = parseFloat(d.lowPrice);
+        const vol = parseFloat(d.volume);
+        const qVol = parseFloat(d.quoteVolume);
+        const change = parseFloat(d.priceChangePercent);
 
         prices.push(price);
+        const maxPoints = selectedTF==="1m" ? 140 : selectedTF==="5m" ? 180 : selectedTF==="15m" ? 220 : 260;
         if(prices.length>maxPoints) prices.shift();
         drawChart();
 
-        const priceEl=document.getElementById("price");
+        const priceEl = document.getElementById("price");
         priceEl.classList.remove("flash");
         void priceEl.offsetWidth;
         priceEl.classList.add("flash");
-        priceEl.textContent=fmtUSD(price,2);
+        priceEl.textContent = fmtUSD(price,2);
 
-        const changeEl=document.getElementById("change");
-        changeEl.textContent=(change>=0?"+":"")+change.toFixed(2)+"%";
-        changeEl.className="change "+(change>=0?"up":"down");
+        const changeEl = document.getElementById("change");
+        changeEl.textContent = (change>=0?"+":"")+change.toFixed(2)+"%";
+        changeEl.className = "change " + (change>=0 ? "up":"down");
 
-        const highEl=document.getElementById("high");
-        const lowEl=document.getElementById("low");
-        const volEl=document.getElementById("volume");
-        const qVolEl=document.getElementById("quoteVolume");
-        const rangeEl=document.getElementById("range");
-        const sentEl=document.getElementById("sentiment");
+        const highEl = document.getElementById("high");
+        const lowEl = document.getElementById("low");
+        const volEl = document.getElementById("volume");
+        const qVolEl = document.getElementById("quoteVolume");
+        const rangeEl = document.getElementById("range");
 
-        const pHigh=Number(highEl.dataset.v ?? high);
-        const pLow=Number(lowEl.dataset.v ?? low);
-        const pVol=Number(volEl.dataset.v ?? vol);
-        const pQVol=Number(qVolEl.dataset.v ?? qVol);
-        const pRange=Number(rangeEl.dataset.v ?? (high-low));
+        const pHigh = Number(highEl.dataset.v ?? high);
+        const pLow = Number(lowEl.dataset.v ?? low);
+        const pVol = Number(volEl.dataset.v ?? vol);
+        const pQVol = Number(qVolEl.dataset.v ?? qVol);
+        const pRange = Number(rangeEl.dataset.v ?? (high-low));
 
         animateTextValue(highEl,pHigh,high,v=>fmtUSD(v,2));
         animateTextValue(lowEl,pLow,low,v=>fmtUSD(v,2));
@@ -530,38 +718,97 @@
         animateTextValue(qVolEl,pQVol,qVol,v=>fmtUSD(v,0));
         animateTextValue(rangeEl,pRange,(high-low),v=>fmtUSD(v,2));
 
-        highEl.dataset.v=high;
-        lowEl.dataset.v=low;
-        volEl.dataset.v=vol;
-        qVolEl.dataset.v=qVol;
-        rangeEl.dataset.v=(high-low);
+        highEl.dataset.v = high;
+        lowEl.dataset.v = low;
+        volEl.dataset.v = vol;
+        qVolEl.dataset.v = qVol;
+        rangeEl.dataset.v = (high-low);
 
-        if(change>1.5){
-          sentEl.textContent="BULLISH";
-          sentEl.style.color="#00ff9d";
-          sentEl.style.textShadow="0 0 20px rgba(0,255,157,.55)";
-        }else if(change<-1.5){
-          sentEl.textContent="BEARISH";
-          sentEl.style.color="#ff4b63";
-          sentEl.style.textShadow="0 0 20px rgba(255,75,99,.55)";
-        }else{
-          sentEl.textContent="NEUTRAL";
-          sentEl.style.color="#eaf8ff";
-          sentEl.style.textShadow="0 0 16px rgba(0,246,255,.35)";
-        }
+        updateSentiment(change);
+        updateOrderBookSim(price);
+        updateTradeTape(price);
+        checkAlerts(price);
+        lastPrice = price;
 
       }catch(e){
-        document.getElementById("price").textContent="OFFLINE";
+        document.getElementById("price").textContent = "OFFLINE";
       }
     }
 
     function updateClock(){
-      document.getElementById("clock").textContent=new Date().toLocaleString();
+      document.getElementById("clock").textContent = new Date().toLocaleString();
     }
 
-    updateBTC();
+    // Timeframe controls
+    let timer = null;
+    function restartFeed(){
+      if(timer) clearInterval(timer);
+      updateMs = tfMap[selectedTF] || 1000;
+      timer = setInterval(updateBTC, updateMs);
+    }
+
+    document.getElementById("timeframes").addEventListener("click",e=>{
+      const b = e.target.closest("button[data-tf]");
+      if(!b) return;
+      document.querySelectorAll("#timeframes .chip").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+      selectedTF = b.dataset.tf;
+      restartFeed();
+    });
+
+    // Theme controls
+    document.getElementById("themes").addEventListener("click",e=>{
+      const b = e.target.closest("button[data-theme]");
+      if(!b) return;
+      document.querySelectorAll("#themes .chip").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+      const t = b.dataset.theme;
+      document.body.classList.remove("theme-cyber","theme-gold","theme-red");
+      if(t==="gold") document.body.classList.add("theme-gold");
+      else if(t==="red") document.body.classList.add("theme-red");
+      else document.body.classList.add("theme-cyber");
+      drawChart();
+    });
+
+    // Fullscreen
+    document.getElementById("fullscreenBtn").addEventListener("click", async ()=>{
+      try{
+        if(!document.fullscreenElement) await document.documentElement.requestFullscreen();
+        else await document.exitFullscreen();
+      }catch(e){}
+    });
+
+    // Sound toggle
+    document.getElementById("soundBtn").addEventListener("click",(e)=>{
+      soundOn = !soundOn;
+      e.currentTarget.textContent = "SOUND: " + (soundOn ? "ON":"OFF");
+    });
+
+    // Alerts
+    const alertInput = document.getElementById("alertInput");
+    document.getElementById("addAlertBtn").addEventListener("click",()=>{
+      const v = parseFloat(alertInput.value);
+      if(!isFinite(v) || v<=0) return;
+      alerts.push({id:Date.now()+Math.random(), value:v, hit:false});
+      alertInput.value = "";
+      renderAlerts();
+    });
+
+    // Kiosk cursor auto-hide after idle
+    let idleTimer = null;
+    function resetIdle(){
+      document.body.style.cursor = "default";
+      if(idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(()=>{document.body.style.cursor="none";},4000);
+    }
+    ["mousemove","mousedown","keydown","touchstart"].forEach(ev=>addEventListener(ev,resetIdle,{passive:true}));
+    resetIdle();
+
+    // Boot
+    renderAlerts();
     updateClock();
-    setInterval(updateBTC,1000);
+    updateBTC();
+    restartFeed();
     setInterval(updateClock,1000);
   </script>
 </body>
